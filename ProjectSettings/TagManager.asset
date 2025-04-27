@@ -9,15 +9,16 @@ TagManager:
   - Shield
   - CinemachineTarget
   - PowerUp
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Shield
   - Water
   - UI
-  - 
-  - 
+  - EnemyProjectile
+  - Player
   - 
   - 
   - 

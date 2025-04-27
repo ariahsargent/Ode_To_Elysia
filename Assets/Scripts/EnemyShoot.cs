@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VRTemplate;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +10,7 @@ public class EnemyShoot : MonoBehaviour
     public float enemySpeed = 3f;   //speed of enemy 
     public float bulletSpeed = 10f;    //speed of bullet
 
-    public GameObject enemyBullet;  //bullet prefab
+    public GameObject projectilePrefab;  //bullet prefab
     public Transform spawnPoint;    //where projectile spawns
     
     public AudioClip shootingSound; //audio for when enemy throws projectile
@@ -17,6 +18,7 @@ public class EnemyShoot : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private float timer = 5f;   //time between shots
     private float bulletTime;   //internal timer for shooting
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,7 @@ public class EnemyShoot : MonoBehaviour
 
     }
 
+
     void MoveTowardsPlayer()
     {
         Vector3 direction = player.position - transform.position;
@@ -64,18 +67,33 @@ public class EnemyShoot : MonoBehaviour
     { 
 
         //makey the bullety at the spawn pointy
-        GameObject bulletObj = Instantiate(enemyBullet, spawnPoint.position, spawnPoint.rotation);
+        GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
 
+       // Rigidbody rb = projectile.GetComponent<Rigidbody>();
         //movement of bullet
-        Rigidbody bulletRig = bulletObj.GetComponent<Rigidbody>();
-        bulletRig.AddForce(bulletRig.transform.forward * bulletSpeed, ForceMode.VelocityChange);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+        rb.AddForce(rb.transform.forward * bulletSpeed, ForceMode.VelocityChange);
+
+        BulletScript projectileScript = projectile.GetComponent<BulletScript>();
+
+        if ( projectileScript != null)
+        {
+            projectileScript.StartThrowingDelay();
+        } else
+        {
+            Debug.LogError("Projectile script not found on the projectile prefab!");
+        }
 
         if (shootingSound != null)
         {
             audioSource.PlayOneShot(shootingSound);
         }
 
+        //small delay to prevent projectile from immediately colliding with enemy
+        //projectile.GetComponent<Projectile>().StartThrowingDelay();
+
         //destory zhe bullet
-        Destroy(bulletObj, 2f);
+        Destroy(projectile, 10f);
     }
+
 }
