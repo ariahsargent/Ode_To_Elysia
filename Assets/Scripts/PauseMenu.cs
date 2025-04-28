@@ -84,6 +84,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Play()
     {
+        Debug.Log("Resume button clicked");
         PauseMenuCanvas.SetActive(false);
         //to access player movement script to halt player movement
         //PlayerScript.canMove = false;
@@ -93,6 +94,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
+        Debug.Log("Main Menu button clicked");
         //need to put time back in place to ensure buttons can be used back at main menu
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
@@ -101,6 +103,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenOptionsMenu()
     {
+        Debug.Log("Options button clicked");
         OptionsMenuCanvas.SetActive(true);
         PauseMenuCanvas.SetActive(false);
         /*

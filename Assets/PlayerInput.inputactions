@@ -3,111 +3,111 @@
     "maps": [
         {
             "name": "Player",
-            "id": "21366db6-c843-4e89-8589-32b3e206e38c",
+            "id": "da571768-8547-4461-a105-816e38e48772",
             "actions": [
                 {
-                    "name": "onMove",
+                    "name": "Move",
                     "type": "Value",
-                    "id": "a41b7fe1-534f-4e75-bc68-a1fe3ff59b3a",
+                    "id": "e7945adf-2d18-4565-bf06-9b17e0163235",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "onLook",
-                    "type": "Value",
-                    "id": "7748a187-8795-4570-bb47-2512fad7d6ab",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "onJump",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "b3588b13-0e82-4717-9cf9-38e512c230de",
+                    "id": "03002a60-0dca-4139-b807-9cc528bdae4b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "d90fb6dd-414f-4c6c-b2bf-c054704d563f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "WASD",
-                    "id": "667dc89b-799d-4733-9111-f8e2e5728aba",
+                    "id": "abcb9615-50c1-4d18-a4ed-a579bad9fc9d",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onMove",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "fe9a43a7-1f2a-4cae-856c-febb0ca951fa",
+                    "id": "13fc9a53-34f3-4bf1-a377-8fa2aa136ba3",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onMove",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "2e7bfe3a-e7f2-47df-bd2d-442febff7879",
+                    "id": "623485a2-ae05-4443-88b3-ed034a2b850a",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onMove",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "282f6203-9a15-4074-b816-fa312adbc207",
+                    "id": "16cd4b76-773f-4fd3-bcd0-059d21a3b425",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onMove",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "3508a866-1463-460f-a98e-a24c9e12d35b",
+                    "id": "df46d611-e22c-492b-97bd-4e0d71bd33db",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onMove",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "95e25050-a544-4460-865b-77b7d6a4948c",
-                    "path": "<Mouse>/delta",
+                    "id": "5e0f789e-ea5f-42d6-90d8-ff2cf723c9e4",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onLook",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ee3ae096-3002-4d0e-8036-5630ec71d0fe",
-                    "path": "<Keyboard>/space",
+                    "id": "42e51e2b-2887-4fc3-a379-88a9a14becc0",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "onJump",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

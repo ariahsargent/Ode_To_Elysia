@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     // outside forces on player variables
     private Vector3 playerVelocity;
     private bool grounded;
-    public float gravity = -9.8f;
+    public float gravity = -1.0f;
     public float jumpForce = 2f;
 
     // camera variables
@@ -36,19 +36,12 @@ public class Player : MonoBehaviour
     public float xSens = 30f;
     public float ySens = 30f;
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-    }
+    private PlayerInput playerInput;
 
-    public void OnJump(InputAction.CallbackContext context)
+    private void Awake()
     {
-        onJump();
-    }
+        playerInput = GetComponent<PlayerInput>();
 
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        lookPos = context.ReadValue<Vector2>();
     }
 
     private void Start()
@@ -62,11 +55,29 @@ public class Player : MonoBehaviour
     private void Update()
     {
         grounded = controller.isGrounded;
-        onMove();
-        onLook();
+        PlayerMove();
+        PlayerLook();
     }
 
-    public void onMove()
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+        Debug.Log("Move input: " + moveInput);
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        PlayerJump();
+        Debug.Log("Jump pressed");
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookPos = context.ReadValue<Vector2>();
+        Debug.Log("Look input: " + lookPos);
+    }
+
+    public void PlayerMove()
     {
         Debug.Log("onMove activated");
 
@@ -84,7 +95,7 @@ public class Player : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    public void onJump()
+    public void PlayerJump()
     {
         Debug.Log("onJump activated");
 
@@ -94,7 +105,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void onLook()
+    public void PlayerLook()
     {
         Debug.Log("onLook activated");
 
