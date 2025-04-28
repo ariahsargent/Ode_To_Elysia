@@ -11,11 +11,11 @@ public class ShieldCollision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // detect collisions with shield and what hit it
-        Debug.Log("Collision detected with: " + collision.gameObject.name); 
+       // Debug.Log("Collision detected with: " + collision.gameObject.name); 
 
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
-            Debug.Log("Shield blocked a projectile!");
+            //Debug.Log("Shield blocked a projectile!");
 
             // get rigidbody of projectile and collider components of the projectile
             Rigidbody projectileRb = collision.gameObject.GetComponent<Rigidbody>();

@@ -2,38 +2,72 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PlayerAdd : MonoBehaviour
 {
-    public float Health, MaxHealth;
+    // ref to health bar ui
+    public RectTransform healthBar;
 
-    [SerializeField]
-    private HealthBarUi healthBar;
+    public float maxHealth = 100f;
+    private float currentHealth;
+
+    private Vector2 originalSize;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        healthBar.SetMaxHealth(MaxHealth);
+        currentHealth = maxHealth;
+        originalSize = healthBar.sizeDelta;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(float amount)
     {
-        if (Input.GetKeyDown("d"))
+        currentHealth -= amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        UpdateHealthBar();
+
+        if(currentHealth <= 0)
         {
-            SetHealth(-10f);
-        }
-        if (Input.GetKeyDown("h"))
-        {
-            SetHealth(10f);
+            Die();
         }
     }
 
-    public void SetHealth(float healthChange)
+    private void UpdateHealthBar()
     {
-        Health += healthChange;
-        Health = Mathf.Clamp(Health, 0, MaxHealth);
+        float healthPercent = currentHealth / maxHealth;
+        healthBar.sizeDelta = new Vector2(originalSize.x * healthPercent, originalSize.y);
+    }
 
-        healthBar.SetHealth(Health);
+    private void Die()
+    {
+        Debug.Log("Player Died!");
+        Time.timeScale = 1f;
+        //same screen as portal
+        SceneManager.LoadScene("Level1Portal");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EnemyProjectile"))
+        {
+            Debug.Log("Player hit by projectile!");
+            //damage taking from one projectile
+            TakeDamage(20f);
+            //no need to destroy projectile game obj -> does so once collides with player in bullet script
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Portal at end of level -> moves player to next scene
+        if (collision.gameObject.CompareTag("Portal"))
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Level1Portal");
+        }
     }
 }
