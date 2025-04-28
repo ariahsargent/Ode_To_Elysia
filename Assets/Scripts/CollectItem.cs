@@ -2,6 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+ * Code created by: Ariah Sargent
+ * Year: 2025
+ * For GIMM Individual Game at Boise State University
+ * References used:
+ *  ChaptGPT -> for lots of troubleshooting
+ *      https://chatgpt.com/share/680f673d-5e80-8007-bf36-b2ef3eee7008
+ * 
+ */
+
 public class CollectItem : MonoBehaviour
 {
     public AudioClip powerUpSound;

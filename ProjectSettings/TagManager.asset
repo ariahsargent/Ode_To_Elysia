@@ -10,6 +10,7 @@ TagManager:
   - CinemachineTarget
   - PowerUp
   - EnemyProjectile
+  - Portal
   layers:
   - Default
   - TransparentFX
